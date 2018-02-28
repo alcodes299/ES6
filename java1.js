@@ -73,3 +73,27 @@ function allLongestStrings(inputArray) {
     }
         return newArray
 }
+// Given a sequence of integers as an array, determine whether it
+// is possible to obtain a strictly increasing sequence by removing
+// no more than one element from the array
+function almostIncreasingSequence(seq) {
+  var bad = 0
+  for(var i=0;i<seq.length;i++) if(seq[i]<=seq[i-1]) {
+    bad++
+    if(bad>1) return false
+    if(seq[i]<=seq[i-2]&&seq[i+1]<=seq[i-1]) return false
+  }
+
+  return bad
+}
+
+// centure to a year
+function centuryFromYear(year) {
+  if (year % 100==0){
+    return year/100
+  }
+  else {
+    return Math.floor(year/100 +1)
+
+  }
+}

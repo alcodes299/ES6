@@ -87,7 +87,7 @@ function almostIncreasingSequence(seq) {
   return bad
 }
 
-// centure to a year
+// century to a year
 function centuryFromYear(year) {
   if (year % 100==0){
     return year/100
@@ -96,4 +96,40 @@ function centuryFromYear(year) {
     return Math.floor(year/100 +1)
 
   }
+}
+//  check if string can be rearranged into a palidrome
+function palindromeRearranging(inputString) {
+    var letterCounts = {};
+    var letter;
+    var palindromeSum = 0;
+    for (var i = 0; i < inputString.length; i++) {
+        letter = inputString[i];
+        letterCounts[letter] = letterCounts[letter] || 0;
+        letterCounts[letter]++;
+
+    }
+    for (var letterCount in letterCounts) {
+        palindromeSum += letterCounts[letterCount] % 2;
+
+    }
+
+    return palindromeSum < 2;
+}
+// adding boarder to pic (strings of array)
+function addBorder(picture) {
+    let origPic = picture.length
+    picture.unshift("")
+    picture.push("")
+    shiftIt = picture[1].length + 2
+     for (var i=0;i<shiftIt;i++){
+         picture[0] += "*"
+         picture[picture.length -1]+="*"
+     }
+    for (var i=1;i<origPic +1;i++){
+        x=picture[i].split('')
+        x.push('*')
+        x.unshift('*')
+        picture[i] = x.join('')
+    }
+    return   picture
 }

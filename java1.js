@@ -133,3 +133,71 @@ function addBorder(picture) {
     }
     return   picture
 }
+// test of strength
+function areEquallyStrong(yourLeft, yourRight, friendsLeft, friendsRight) {
+   let yourStrong;
+    let yourWeak;
+    let himWeak;
+    let himStrong;
+    if (yourLeft >= yourRight){
+        yourStrong= yourLeft
+        yourWeak=yourRight
+    } else{
+        yourStrong = yourRight
+        yourWeak = yourLeft
+    }
+    if(friendsLeft>=friendsRight){
+        himStrong=friendsLeft
+        himWeak=friendsRight
+    } else {
+        himStrong=friendsRight
+        himWeak=friendsLeft
+    }
+    if (yourStrong == himStrong&& yourWeak == himWeak){
+        return true
+        } else {
+        return false
+        }
+}
+// checks for valid ipv4
+function isIPv4Address(inputString) {
+    x=inputString.split(".")
+    let true1 = null
+    let true2 = null
+    for (i = 0; i < x.length; i++) {
+        true1 = true
+        console.log(isNaN(x[i]))
+        if(isNaN(x[i]) == true) {
+            true1 = false
+            break
+        }
+        if(x[i].length > 3){
+            console.log("to long")
+            true1 = false
+            break
+           }
+
+        if(x[i] == ""){
+           console.log("winner")
+            true1 =false
+            break
+           }
+        if (x[i] < 0 || x[i]> 255){
+
+            true1 = false
+            console.log("hmmm")
+            break
+        }
+    }
+    if (x.length == 4) {
+        true2 = true
+    } else {
+        true2 = false
+    }
+    if(true1 && true2 == true) {
+        return true
+    } else {
+        return false
+    }
+
+}

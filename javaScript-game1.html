@@ -10,7 +10,7 @@
   </head>
   <body>
     <h1>Game one</h1>
-    <canvas id="myCanvas" width='480' height='320'></canvas>
+    <canvas id="myCanvas" width='800' height='300'></canvas>
     <script>
     var canvas = document.getElementById("myCanvas");
     var ctx = canvas.getContext("2d");
@@ -19,6 +19,9 @@
     var dx = 2
     var dy = -2
     var ballRadius = 10
+    var paddleHeight = 10
+    var paddleWidth = 75
+    var paddleX = (canvas.width-paddleWidth)/2
     function drawBall(){
       ctx.beginPath()
       ctx.arc(x,y,ballRadius,0, Math.PI*2)
@@ -26,8 +29,16 @@
       ctx.fill()
       ctx.closePath()
     }
+    function drawPaddle(){
+      ctx.beginPath()
+      ctx.rect(paddleX,canvas.height-paddleHeight, paddleWidth, paddleHeight)
+      ctx.fillStyle = "#0095DD";
+      ctx.fill()
+      ctx.closePath()
+    }
     function draw(){
       ctx.clearRect(0,0, canvas.width, canvas.height)
+      drawPaddle()
       drawBall()
       x += dx
       y+= dy
@@ -35,7 +46,7 @@
         dx = -dx;
         var colors = ["red","blue","pink","yellow","violet","purple","lightblue","orange","green","lightgreen"]
         var colorN = Math.floor(Math.random() * 10)
-        
+
         ctx.fillStyle = `${colors[colorN]}`
       }
 
@@ -47,7 +58,7 @@
       }
 
     }
-    setInterval(draw,20)
+    setInterval(draw,10)
     </script>
   </body>
 </html>

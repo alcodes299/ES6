@@ -48,11 +48,11 @@ function Sprite(img,x,y,w,h){
 function InputHandeler(){
   this.down = {}
   this.pressed = {}
-  var _this =this
+  var _this=this
   document.addEventListener("keydown",function(evt){
     _this.down[evt.keyCode] = true
   })
-  document.addEventListener("keyup", function(evt){
+  document.addEventListener("keydown", function(evt){
       delete _this.down[evt.keyCode]
       delete _this.pressed[evt.keyCode]
   })

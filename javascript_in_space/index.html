@@ -26,6 +26,8 @@
       var itscreen, input, frames, spFrame, lvFrame
       var alSprite, taSprite,ciSprite
       var aliens, dir, tank, bullets, cities
+      score = 0
+      lvl = 1
       function main(){
         itscreen = new Screen(504,600)
         input = new InputHandeler()
@@ -48,10 +50,10 @@
       function init(){
         frames = 0
         spFrame = 0
-        lvFrame = 100
-        dir = 1
-        score = 0
-        lvl = 1
+        lvFrame = 60
+        dir = 2
+        lowestAl = 0
+
 
         aliens = []
 
@@ -139,18 +141,27 @@
 
         //win/lose
         //lvls lives
-        if (aliens.length === 0) {
 
+        for (var i = 0; i < aliens.length; i++) {
+
+          if (aliens[i].y > lowestAl){
+            lowestAl = aliens[i].y
+            console.log(lowestAl)
+          }
+        }
+
+        if (aliens.length ===  0) {
+          score++
           alert("you WIn")
           lvl++
           init()
         }
 
         if(input.isDown(37)){//left
-          tank.x -= 8
+          tank.x -= 7
         }
         if (input.isDown(39)) {
-          tank.x += 8
+          tank.x += 7
         }
         tank.x = Math.max(Math.min(tank.x, itscreen.width - (30 + taSprite.w)),30)
 
@@ -187,16 +198,16 @@
               len--
               switch (len2){
                 case 30: {
-                  this.lvFrame = 70
+                  this.lvFrame = 80
                 }
                 case 10: {
-                  this.lvFrame = 60
+                  this.lvFrame = 70
                 }
                 case 5: {
-                  this.lvFrame = 40
+                  this.lvFrame = 60
                 }
                 case 1: {
-                  this.lvFrame = 10
+                  this.lvFrame = 40
                 }
               }
             }

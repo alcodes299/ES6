@@ -1,10 +1,18 @@
 import SpriteSheet from './spritesheet.js'
-import loadImage from './loaders.js'
+import {loadImage, loadLevel} from './loaders.js'
 
-
+function drawBackground(backrounds, context, sprite){
+  backrounds.ranges.forEach(([x1, x2, y1, y2])=>{
+    for(let x = x1; x < x2;++x){
+      for(let y = y1;y < y2;y++){
+        sprite.drawTile(backrounds.tile, context, x, y)
+      }
+    }
+  })
+}
 const canvas = document.getElementById('screen')
 const context = canvas.getContext('2d')
-context.fillRect(0,0,50,50)
+
 
 loadImage('/img/tiles.png')
 .then(image => {
@@ -12,14 +20,11 @@ loadImage('/img/tiles.png')
   sprite.define('ground',0, 0)
   sprite.define('sky', 3,23)
 
-  for(let x = 0; x < 25;++x){
-    for(let y = 0;y < 14;y++){
-      sprite.drawTile('sky',context, x, y)
-    }
-  }
-  for(let x = 0; x < 25;++x){
-    for(let y = 12;y < 14;y++){
-      sprite.drawTile('ground',context, x, y)
-    }
-  }
+  loadLevel('1-1')
+  .then(level =>{
+    console.log(level)
+    level.backrounds.forEach(backround => {
+      drawBackground(backround, context,sprite)
+    })
+  })
 })

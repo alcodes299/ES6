@@ -5,8 +5,48 @@
     <title>JS Pong</title>
   </head>
   <body>
-    <h4>Welcome to js pong</h4>
-    <canvas id="pong" width="800" height="600"></canvas>
+    <style>
+    body
+    {
+      background: radial-gradient(red, green, blue);
+    }
+    #smurf{
+      background: white;
+      padding: 10px;
+    }
+
+    #button{
+      background: white;
+    }
+    #pic{
+
+    }
+    #pong
+    {
+      border: 10px solid #00ff00;
+    }
+    #mid{
+      height: 100px;
+      border-radius: 50px;
+      background: green;
+      border: 5px solid grey;
+      font-size: 20px;
+
+    }
+    </style>
+    <h4 id="smurf">Welcome to js pong</h4>
+    <div id="board">
+      <span>
+      <canvas id="pong" width="900" height="400"></canvas>
+
+        <span>
+          <span>
+            <button id="mid">Restart</button>
+          </span>
+      </span>
+
+
+    </div>
     <script src="pong.js"></script>
   </body>
-</html>
+  </html>

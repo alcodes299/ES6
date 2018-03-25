@@ -63,6 +63,8 @@ class Pong {
      this.players[0].pos.x = 45
      this.players[1].pos.x = this._canvas.width - 40
 
+      this.aiPos;
+
      this.players.forEach(player => {
        player.pos.y = this._canvas.height / 2
      })
@@ -76,20 +78,37 @@ class Pong {
        lastTime = millis
        requestAnimationFrame(callback)
      }
+
      callback()
+
+     this.CHARS = [
+       '111101101101111',
+       '010010010010010',
+       '111001111100111',
+       '111001111001111',
+       '101101111001001',
+       '111100111001111',
+       '111100111101111',
+       '111001001001001',
+       '111101111101111',
+       '111101111001111'
+     ]
 
     this.reset()
   }
   collide(player, ball){
     if (player.left < ball.right && player.right > ball.left &&
         player.top < ball.bottom &&  player.bottom > ball.top){
+          const len = ball.vel.len
+
           ball.vel.x = -ball.vel.x
+          ball.vel.y += 300 * (Math.random()) // degree of variation in ball on paddle hit
+          ball.vel.len = len * 1.05 //player hit increases ball speed
         }
   }
   draw(){
     this._context.fillStyle = "#000"
     this._context.fillRect(0, 0, this._canvas.width, this._canvas.height)
-
     this.drawRect(this.ball)
     this.players.forEach(player =>  this.drawRect(player))
 
@@ -121,12 +140,12 @@ class Pong {
     if(this.ball.left < 0|| this.ball.right > this._canvas.width){
       const  playerId = this.ball.vel.x < 0 | 0
       this.players[playerId].score++
-      console.log(this.players[playerId].score)
       this.reset()
     }
     if(this.ball.top < 0 || this.ball.bottom > this._canvas.height){
       this.ball.vel.y = -this.ball.vel.y
     }
+
     this.players[1].pos.y = this.ball.pos.y
 
     this.players.forEach(player => this.collide(player, this.ball))
@@ -135,14 +154,30 @@ class Pong {
   }
 
 }
+var img = document.getElementById('scream')
+
 const canvas = document.getElementById('pong')
 const context = canvas.getContext('2d')
 const pong = new Pong(canvas)
 
+
+
 canvas.addEventListener('mousemove', event =>{
   pong.players[0].pos.y = event.offsetY
+})
+var button = document.getElementById("mid")
+button.addEventListener('click', event =>{
+  pong.reset()
 })
 
 canvas.addEventListener('click', event =>{
   pong.start()
+})
+button.addEventListener('mouseover', event =>{
+  button.style.background = "red"
+  button.style.border = "thick solid black"
+})
+button.addEventListener('mouseout', event =>{
+  button.style.background = "green"
+  button.style.border = "thick solid orange"
 })

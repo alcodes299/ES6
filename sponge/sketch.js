@@ -6,9 +6,16 @@ function setup() {
   sponge.push(b)
 }
 function mousePressed(){
-  var nextSponge = sponge[0].generate()
-  sponge = nextSponge
+  var nextSponge = []
+  for (var b = 0; b < sponge.length; b ++){
+      var newBox = sponge[b].generate()
 
+    nextSponge = newBox
+  }
+
+  for (var d = 0; d < nextSponge.length; d++){
+    sponge.push(nextSponge[d])
+  }
 
 }
 function draw(){

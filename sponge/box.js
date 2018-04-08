@@ -8,17 +8,19 @@ function Box(x, y, z, r){
       for (var y = 0; y < 3; y++) {
         for (var z = 0; z < 3; z++) {
           var newR = r/3
-          b = new Box(this.pos.x+x*newR,this.pos.y + y*newR,this.pos.z + z*newR)
+          b = new Box(this.pos.x + (x*newR),this.pos.y + (y*newR),this.pos.z + (z*newR), newR)
+
           boxes.push(b)
         }
       }
+
     }
     return boxes
   }
   this.show = function() {
     push()
     fill(5)
-    translate(this.pos.x - 66, this.pos.y, this.pos.z)
+    translate(this.pos.x, this.pos.y, this.pos.z)
 
     box(r)
     pop()

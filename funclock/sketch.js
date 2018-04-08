@@ -16,12 +16,9 @@ function  draw(){
   let mnag = map(mn,0, 60, 0, 360)
   let hrag = map(hr, 0, 12, 0, 360)
 
-  fill(255)
-  noStroke()
-
-
 
   noFill()
+  rotate(-90)
   stroke("lightgreen")
   //hours
   arc(0,0, 60,60, 0, hrag)
@@ -39,6 +36,7 @@ function  draw(){
   arc(0,0, 200,200, 0, scag)
   arc(0,0, 204,204, 0, scag)
   arc(0,0, 208,208, 0, scag)
+
 
   push()
   rotate(scag)
@@ -60,7 +58,11 @@ function  draw(){
   rotate(hrag)
   line(0,0,300,0)
   pop()
-  stroke('#75FA6C')
 
+
+  push()
+  stroke('#75FA6C')
+  rotate(90)
   text(hr+':'+mn+':'+sc,-18,60)
+  pop()
 }

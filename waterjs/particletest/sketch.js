@@ -25,19 +25,32 @@ function setup(){
   World.add(world, left)
   World.add(world, right)
 }
-function mouseDragged() {
-  boxes.push(new Box(mouseX, mouseY, random(1, 2)))
+function mouseMoved() {
+  boxes.push(new Box(mouseX, mouseY, random(3, 7)))
 }
 
 function draw() {
-  fill("red")
+  fill("green")
+  stroke("white")
   background(50)
   for (var i = 0; i < boxes.length; i++) {
     boxes[i].show()
   }
+  //boundries
+  push()
+  fill(255)
+  rect()
+  rect(100,200,10,400)
+  rect(5,200,10,400)
+  rect(200,200,10, 400)
+  rect(300,200,10,400)
+  rect(385, 200, 10, 400)
+  rect()
+  pop()
+
   fill(50)
   push()
-  stroke("blue")
+  stroke("brown")
   strokeWeight(8)
   line(0, height-4, 400, height-4)//bot
   line(0, 0, 0, 400)//left

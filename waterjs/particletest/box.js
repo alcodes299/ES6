@@ -1,9 +1,11 @@
 function Box(x, y, r){
   var options = {
     friction: .3,
-    restitution: 1
-
+    restitution: 1,
+    frictionAir: 0.1,
+    mass: 0.0001,
   }
+
   this.body = Bodies.circle(x, y, r, options)
 
   this.r = r
